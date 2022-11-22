@@ -13,16 +13,24 @@ export class MessagesService {
       text: 'Segunda mensagem',
     },
   ];
-
+  
   findAll() {
     return this.messages;
   }
-
+  
   findByID(id: number) {
     return this.messages.find((message) => message.id === id);
   }
-
+  
   create(message: Message) {
     return this.messages.push(message);
+  }
+
+  update(id: number, message: Message) {
+    const index = this.messages.findIndex((message: Message) => message.id === id);
+
+    this.messages[index] = message;
+
+    return message;
   }
 }
