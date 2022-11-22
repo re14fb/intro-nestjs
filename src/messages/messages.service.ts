@@ -18,8 +18,14 @@ export class MessagesService {
     return this.messages;
   }
   
-  findByID(id: number) {
-    return this.messages.find((message) => message.id === id);
+  async findById(id: number) {
+    const message = this.messages.find((msg) => msg.id === id);
+
+    if(!message) {
+      throw Error('Houve um erro em buscar a mensagem');     
+    }
+
+    return message;
   }
   
   create(message: Message) {
